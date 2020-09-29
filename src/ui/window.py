@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QUrl, Qt
-from PyQt5.QtWidgets import QMainWindow, QShortcut
+from PyQt5.QtWidgets import QMainWindow, QShortcut, QSplitter, QWidget, QBoxLayout
 
 from src.ui.devtool import DevTool
 from src.ui.statusbar import StatusBar
@@ -14,21 +14,33 @@ class Window(QMainWindow):
 
     def _init_widget(self):
         self.setWindowTitle("Kiwoomium")
-        self.setGeometry(100, 100, 1024, 768)
+        self.setGeometry(100, 100, 1440, 960)
         self.setMinimumSize(1024, 768)
 
         self.toolbar = Toolbar()
         self.statusbar = StatusBar()
         self.webview = WebView()
 
-        self.addToolBar(self.toolbar)
-        self.setCentralWidget(self.webview)
-        self.setStatusBar(self.statusbar)
-
         self._init_toolbar()
         self._init_webview()
         self._init_devtool()
         self._init_shortcut()
+        self._init_layout()
+
+    def _init_layout(self):
+        self.main_widget = QWidget()
+        self.layout = QBoxLayout(QBoxLayout.LeftToRight)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.splitter = QSplitter()
+        self.splitter.setOrientation(Qt.Horizontal)
+        self.splitter.addWidget(self.webview)
+        self.splitter.addWidget(self.devtool)
+        self.layout.addWidget(self.splitter)
+        self.main_widget.setLayout(self.layout)
+
+        self.addToolBar(self.toolbar)
+        self.setCentralWidget(self.main_widget)
+        self.setStatusBar(self.statusbar)
 
     def _init_webview(self):
         self.webview.setUrl(QUrl("https://www.qt.io"))
