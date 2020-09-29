@@ -16,18 +16,18 @@ class Toolbar(QToolBar):
         self.toggleViewAction().setEnabled(False)
 
         # 뒤로가기 버튼
-        back_action = QAction(self)
-        back_action.setShortcut(QKeySequence(Qt.Key_Back))
-        back_action.setIcon(QIcon("assets/images/left-arrow.png"))
-        self.addAction(back_action)
-        back_action.triggered.connect(self.back_button_clicked)
+        self.back_action = QAction(self)
+        self.back_action.setShortcut(QKeySequence(Qt.Key_Back))
+        self.back_action.setIcon(QIcon("assets/images/left-arrow.png"))
+        self.addAction(self.back_action)
+        self.back_action.triggered.connect(self.back_button_clicked)
 
         # 앞으로가기 버튼
-        forward_action = QAction(self)
-        forward_action.setShortcut(QKeySequence(Qt.Key_Forward))
-        forward_action.setIcon(QIcon("assets/images/right-arrow.png"))
-        self.addAction(forward_action)
-        forward_action.triggered.connect(self.forward_button_clicked)
+        self.forward_action = QAction(self)
+        self.forward_action.setShortcut(QKeySequence(Qt.Key_Forward))
+        self.forward_action.setIcon(QIcon("assets/images/right-arrow.png"))
+        self.addAction(self.forward_action)
+        self.forward_action.triggered.connect(self.forward_button_clicked)
 
         # 새로고침 취소 액션
         self.stop_reload_action = QAction(self)
