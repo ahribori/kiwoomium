@@ -1,4 +1,5 @@
 from PyQt5.QtCore import QUrl, Qt
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QShortcut, QSplitter, QWidget, QBoxLayout
 
 from src.ui.devtool import DevTool
@@ -42,6 +43,7 @@ class Window(QMainWindow):
         self.addToolBar(self.toolbar)
         self.setCentralWidget(self.main_widget)
         self.setStatusBar(self.statusbar)
+        self.setWindowIcon(QIcon('assets/svg/gold.svg'))
 
     def _init_webview(self):
         self.webview.setUrl(QUrl("https://www.qt.io"))
