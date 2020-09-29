@@ -1,10 +1,10 @@
 from PyQt5.QtCore import QUrl, Qt
 from PyQt5.QtWidgets import QMainWindow, QShortcut
 
-from ui.devtool import DevTool
-from ui.statusbar import StatusBar
-from ui.toolbar import Toolbar
-from ui.webview import WebView
+from src.ui.devtool import DevTool
+from src.ui.statusbar import StatusBar
+from src.ui.toolbar import Toolbar
+from src.ui.webview import WebView
 
 
 class Window(QMainWindow):
