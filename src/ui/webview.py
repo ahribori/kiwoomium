@@ -11,3 +11,11 @@ class WebView(QWebEngineView):
         settings.setAttribute(QWebEngineSettings.JavascriptCanAccessClipboard, True)
         settings.setAttribute(QWebEngineSettings.Accelerated2dCanvasEnabled, True)
         settings.setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
+
+    # webview의 document에 이벤트를 발생함.
+    def emit(self, type, payload):
+        self.page().runJavaScript("""
+        var event = document.createEvent("CustomEvent");
+        event.initCustomEvent("{type}", true, true, {payload} );
+        document.dispatchEvent(event);
+        """.format(type=type, payload=payload))
