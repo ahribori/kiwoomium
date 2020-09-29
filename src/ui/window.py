@@ -66,5 +66,10 @@ class Window(QMainWindow):
         self.shortcut['F12'].setKey(Qt.Key_F12)
         self.shortcut['F12'].activated.connect(self._toggle_devtool)
 
+        self.shortcut['CTRL+R'] = QShortcut(self)
+        self.shortcut['CTRL+R'].setContext(Qt.ApplicationShortcut)
+        self.shortcut['CTRL+R'].setKey(Qt.CTRL + Qt.Key_R)
+        self.shortcut['CTRL+R'].activated.connect(self.webview.reload)
+
     def _toggle_devtool(self):
         self.devtool.setVisible(not self.devtool.isVisible())

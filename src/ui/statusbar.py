@@ -6,6 +6,7 @@ class StatusBar(QStatusBar):
     def __init__(self):
         QStatusBar.__init__(self)
         self.progress_bar = QProgressBar()
+        self.progress_bar.setMaximumSize(200, 20)
         self.addWidget(self.progress_bar)
 
     @pyqtSlot(int, name="setProgressValue")
