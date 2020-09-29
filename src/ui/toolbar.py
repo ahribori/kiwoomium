@@ -32,7 +32,7 @@ class Toolbar(QToolBar):
         # 새로고침 취소 액션
         self.stop_reload_action = QAction(self)
         self.stop_reload_action.setShortcut(QKeySequence(Qt.Key_F5))
-        self.stop_reload_action.setIcon(QIcon("assets/images/refresh.png"))
+        self.stop_reload_action.setIcon(QIcon("assets/images/rotate.png"))
         self.stop_reload_action.setData(QWebEnginePage.Reload)
         self.addAction(self.stop_reload_action)
         self.stop_reload_action.triggered.connect(
