@@ -9,9 +9,3 @@ class DevTool(QWebEngineView):
     def _init_devtool(self, webview):
         self.setPage(self.page())
         webview.page().setDevToolsPage(self.page())
-
-    def activate(self):
-        self.setVisible(True)
-
-    def deactivate(self):
-        self.setVisible(False)

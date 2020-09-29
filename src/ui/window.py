@@ -35,6 +35,7 @@ class Window(QMainWindow):
         self.splitter.setOrientation(Qt.Horizontal)
         self.splitter.addWidget(self.webview)
         self.splitter.addWidget(self.devtool)
+        self.splitter.setSizes([65, 35])
         self.layout.addWidget(self.splitter)
         self.main_widget.setLayout(self.layout)
 
@@ -66,17 +67,4 @@ class Window(QMainWindow):
         self.shortcut['F12'].activated.connect(self._toggle_devtool)
 
     def _toggle_devtool(self):
-        is_enabled = self.devtool.isVisible()
-
-        if not is_enabled:
-            pos = self.pos()
-            size = self.size()
-            margin = 30
-            width = 700
-            height = size.height()
-            x = pos.x() + size.width() + margin
-            y = pos.y() + margin
-            self.devtool.setGeometry(x, y, width, height)
-            self.devtool.activate()
-        else:
-            self.devtool.deactivate()
+        self.devtool.setVisible(not self.devtool.isVisible())
