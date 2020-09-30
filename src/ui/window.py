@@ -46,7 +46,7 @@ class Window(QMainWindow):
         self.setWindowIcon(QIcon('assets/svg/gold.svg'))
 
     def _init_webview(self):
-        self.webview.setUrl(QUrl("https://www.qt.io"))
+        self.webview.setUrl(QUrl("http://localhost:3000"))
         self.webview.loadProgress.connect(
             lambda progress: self.toolbar.changeStopReload(bool(0 <= progress >= 100)))
         self.webview.loadProgress.connect(self.statusbar.setProgressValue)

@@ -35,7 +35,7 @@ class WebView(QWebEngineView):
     def _set_web_channel(self):
         channel = QWebChannel(self.page())
         self.page().setWebChannel(channel)
-        self.kiwoom = Kiwoom()
+        self.kiwoom = Kiwoom(self)
         channel.registerObject('kiwoom', self.kiwoom)
         self._load_objects()
 
