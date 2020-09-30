@@ -45,6 +45,7 @@ class Toolbar(QToolBar):
         fav_action = QAction(self)
         self.le.addAction(fav_action, QLineEdit.LeadingPosition)
         self.le.setClearButtonEnabled(True)
+        self.le.setContentsMargins(8, 8, 8, 8)
         self.addWidget(self.le)
         self.le.editingFinished.connect(
             lambda: self.address_changed.emit(self.le.text()))
