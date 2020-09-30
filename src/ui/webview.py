@@ -20,25 +20,27 @@ class WebView(QWebEngineView):
     @pyqtSlot(bool)
     def _on_load_finished(self, ok):
         if ok:
-            self._execute_javascript()
+            self._load_qwebchannel()
 
-    def _execute_javascript(self):
+    # 웹뷰와 메인프로세스간의 통신을 위해 채널을 만들기 위해 cwebchannel.js를 브라우저에서 실행시킨다.
+    def _load_qwebchannel(self):
         qwebchannel_js = QFile('src/js/qwebchannel.min.js')
         if qwebchannel_js.open(QIODevice.ReadOnly):
             content = qwebchannel_js.readAll()
             qwebchannel_js.close()
             self.page().runJavaScript(content.data().decode())
-        if self.page().webChannel() is None:
-            self._set_web_channel()
+        self._set_web_channel()
 
+    # 브라우저에서 실행가능한 인터페이스를 만든다.
     def _set_web_channel(self):
         channel = QWebChannel(self.page())
         self.page().setWebChannel(channel)
         self.kiwoom = Kiwoom()
         channel.registerObject('kiwoom', self.kiwoom)
-        self.load_objects()
+        self._load_objects()
 
-    def load_objects(self):
+    # 브라우저에서 채널이 연결되면 채널 인터페이스를 window 객체에 바인딩한다.
+    def _load_objects(self):
         load_objects_js = QFile('src/js/load_objects.js')
         if load_objects_js.open(QIODevice.ReadOnly):
             content = load_objects_js.readAll()
